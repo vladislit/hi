@@ -1,0 +1,81 @@
+vladrahaian1@gmail.com
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Event Map</title>
+ <style>
+  #map {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   background-image: url('hjjj.jpg');
+   background-size: cover;
+   background-position: center;
+   border: 1px solid black;
+  }
+
+  .dot {
+   position: absolute;
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   background-color: red;
+   cursor: pointer;
+  }
+
+  .preview {
+   position: absolute;
+   display: none;
+   width: 100px;
+   height: 100px;
+   background-color: beige;
+   overflow: scroll;
+   padding: 20px;
+   box-sizing: border-box;
+   transition: opacity 0.5s ease;
+  }
+
+  .preview h2 {
+   margin-top: 0;
+  }
+
+  .preview img {
+   max-width: 100%;
+   margin-bottom: 10px;
+  }
+ </style>
+</head>
+<body>
+ <div id="map">
+  <div class="dot" style="top: 633px; left: 920px;"></div>
+  <div class="dot" style="top: 367px; left: 1135px;"></div>
+  <div class="dot" style="top: 145px; left: 655px;"></div>
+  <div class="dot" style="top: 310px; left: 275px;"></div>
+  <div class="dot" style="top: 277px; left: 292px;"></div>
+  <div class="preview"></div>
+ </div>
+
+ <script>
+  const dots = document.querySelectorAll('.dot');
+  const preview = document.querySelector('.preview');
+
+  dots.forEach(dot => {
+   dot.addEventListener('mouseenter', () => {
+    const html = `
+     <h2>Location Name</h2>
+     <img src="location1.jpg" alt="Location 1">
+     <p>Description of location</p>
+    `;
+    preview.innerHTML = html;
+    preview.style.display = 'block';
+    preview.style.top = dot.offsetTop + 'px';
+    preview.style.left = dot.offsetLeft + 'px';
+   });
+
+   dot.addEventListener('mouseleave', () => {
+    preview.style.display = 'none';
+   });
+  });
+ </script>
+</body>
+</html>
